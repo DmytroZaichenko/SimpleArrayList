@@ -132,7 +132,10 @@ public class SimpleArrayList implements Iterable<Object> {
 
         @Override
         public Object next() {
-            return elem[curPos ++];
+            if (hasNext()){
+                return elem[curPos ++];
+            }
+            throw new IllegalStateException("List has no more elements.");
         }
     }
 }

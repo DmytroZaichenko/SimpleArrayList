@@ -31,9 +31,15 @@ public class Demo {
         for (Object obj:sal) {
             result += obj + ", ";
         }
-
         result = result.substring(0,result.length() - 2) + "]";
         System.out.println(result);
+
+
+        for (int i = 0; i < sal.getSize(); i++){
+            System.out.print(sal.get(i)+". ");
+        }
+
+
 
     }
 
