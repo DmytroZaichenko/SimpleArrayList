@@ -121,6 +121,7 @@ public class SimpleArrayList implements Iterable<Object> {
     private class SALIterator implements Iterator<Object>{
 
         public SALIterator() {
+            curPos = 0;
         }
 
         @Override
@@ -137,5 +138,14 @@ public class SimpleArrayList implements Iterable<Object> {
             }
             throw new IllegalStateException("List has no more elements.");
         }
+
+        @Override
+        public void remove() {
+            if (!(size == 0)){
+                elem[curPos] = null;
+                size --;
+            }
+        }
+
     }
 }
