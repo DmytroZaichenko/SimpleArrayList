@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleArrayList implements Iterable<Object> {
 
@@ -99,9 +100,9 @@ public class SimpleArrayList implements Iterable<Object> {
 
     @Override
     public String toString() {
+
         String result;
         result = "[";
-
 
         for (int i = 0; i < elem.length ; i++) {
 
@@ -109,7 +110,9 @@ public class SimpleArrayList implements Iterable<Object> {
                 result += elem[i] + ", ";
             }
         }
-        result = result.substring(0, result.length() - 2) + "]";
+
+        result = result.length() > 3 ? result.substring(0, result.length() - 2) : result;
+        result += "]";
         return result;
     }
 
@@ -141,9 +144,20 @@ public class SimpleArrayList implements Iterable<Object> {
 
         @Override
         public void remove() {
-            if (!(size == 0)){
-                elem[curPos] = null;
+
+            if (!(size == 0) && curPos >= 0) {
+                int cPos = 0;
+                Object curValue;
+                for (int i = 1; i < elem.length ; i++) {
+                    curValue = elem[i];
+                    if (curValue == null){
+                        elem[cPos] = null;
+                        break;
+                    }
+                    elem[cPos ++] = curValue;
+                }
                 size --;
+                curPos --;
             }
         }
 
